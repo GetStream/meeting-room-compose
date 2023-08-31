@@ -99,12 +99,6 @@ If you’re interested in adding powerful In-App Video Calling, Audio Room, Live
 - [Sandwich](https://github.com/skydoves/sandwich): An adaptable and lightweight sealed API library designed for Kotlin and Android, specializing in efficient Retrofit response modeling and exception handling.
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API.
 
-## 🕵️ Testing Credentials
-
-Stream offers playground credentials and demo flows that make it easy for you to perform integration tests with the Stream Video SDK. If you're interested in experimenting with our test credentials for your project, check out the [Testing Credentials](https://staging.getstream.io/video/docs/android/playground/demo-credentials/).
-
-![Testing Credentials](https://github.com/GetStream/stream-video-android/assets/24237865/ccea521b-c732-4042-ad66-e582dff02828)
-
 ## 👨‍👨‍👦‍👦 Testing Multiple Participants
 
 For interactive tests across different platforms, you can utilize Stream web applications. You can simply join the web application with [Stream Video Web Demo](https://getstream.io/video/demos/?id=GzGQPrISLSHk).
