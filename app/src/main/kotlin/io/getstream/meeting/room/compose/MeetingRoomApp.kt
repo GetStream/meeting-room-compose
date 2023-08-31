@@ -33,8 +33,7 @@ class MeetingRoomApp : Application() {
     @JvmStatic
     lateinit var app: MeetingRoomApp
 
-    // This API key should be only used for demonstrating this project.
-    // If you want to get your own api key, follow the instructions below:
+    // To get your own api key, follow the instructions below:
     // https://getstream.io/video/docs/android/playground/stream-api-key/
     const val apiKey = "YOUR_API_KEY"
 
