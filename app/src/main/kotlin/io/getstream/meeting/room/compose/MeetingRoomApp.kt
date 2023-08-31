@@ -36,7 +36,7 @@ class MeetingRoomApp : Application() {
     // This API key should be only used for demonstrating this project.
     // If you want to get your own api key, follow the instructions below:
     // https://getstream.io/video/docs/android/playground/stream-api-key/
-    const val apiKey = "mmhfdzb5evj2"
+    const val apiKey = "YOUR_API_KEY"
 
     // call type and call id decide which meeting room you want to join.
     // ideally you should not define them statically in the Application class,
