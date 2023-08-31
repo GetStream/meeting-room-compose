@@ -72,7 +72,7 @@ If you’re interested in adding powerful In-App Video Calling, Audio Room, Live
 
 ![stream](figures/stream3.png)
 
-7. Go to the [MeetingRoomApp](https://github.com/GetStream/meeting-room-compose/blob/main/app/src/main/kotlin/io/getstream/meeting/room/compose/MeetingRoomApp.kt) class and change the `apiKey` property with your key.
+7. Go to the [MeetingRoomApp](https://github.com/GetStream/meeting-room-compose/blob/main/app/src/main/kotlin/io/getstream/meeting/room/compose/MeetingRoomApp.kt#L39) class and change the `apiKey` property with your key.
 
 8. Build and run the project.
 
