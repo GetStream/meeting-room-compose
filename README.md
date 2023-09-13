@@ -18,7 +18,7 @@ The primary objective of this repository is to showcase the following:
 
 ## ✍️ Technical Content
 
-Coming soon!
+If you're keen on learning about constructing a real-time meeting room application using Jetpack Compose, we recommend exploring **[Build a Real-Time Meeting Room App for Android With Jetpack Compose](https://getstream.io/blog/compose-meeting-room/)**.
 
 ## :bulb: Additional Repositories
 
