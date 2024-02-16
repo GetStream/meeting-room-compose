@@ -1,5 +1,5 @@
 [versions]
-agp = "8.1.1"
+agp = "8.2.2"
 kotlin = "1.9.10"
 ksp = "1.9.22-1.0.16"
 streamVideo = "0.3.4"
