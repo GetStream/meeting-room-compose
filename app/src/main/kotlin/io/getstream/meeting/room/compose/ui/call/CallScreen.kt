@@ -44,7 +44,7 @@ import io.getstream.video.android.compose.ui.components.call.controls.actions.Fl
 import io.getstream.video.android.compose.ui.components.call.controls.actions.ToggleCameraAction
 import io.getstream.video.android.compose.ui.components.call.controls.actions.ToggleMicrophoneAction
 import io.getstream.video.android.compose.ui.components.call.renderer.ParticipantVideo
-import io.getstream.video.android.compose.ui.components.call.renderer.ParticipantsGrid
+import io.getstream.video.android.compose.ui.components.call.renderer.ParticipantsLayout
 import io.getstream.video.android.compose.ui.components.call.renderer.RegularVideoRendererStyle
 
 @Composable
@@ -95,7 +95,7 @@ private fun CallScreenContent(
       navController.navigateUp()
     },
     videoContent = {
-      ParticipantsGrid(
+      ParticipantsLayout(
         call = call,
         modifier = Modifier
           .fillMaxSize()

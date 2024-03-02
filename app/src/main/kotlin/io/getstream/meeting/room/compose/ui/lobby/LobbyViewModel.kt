@@ -18,12 +18,8 @@ package io.getstream.meeting.room.compose.ui.lobby
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.skydoves.sandwich.messageOrNull
-import com.skydoves.sandwich.onFailure
-import com.skydoves.sandwich.onSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.getstream.meeting.room.compose.MeetingRoomApp
-import io.getstream.meeting.room.compose.network.StreamVideoNetwork
 import io.getstream.video.android.core.Call
 import io.getstream.video.android.core.StreamVideo
 import io.getstream.video.android.core.StreamVideoBuilder
@@ -46,32 +42,25 @@ class MainViewModel @Inject constructor() : ViewModel() {
       val userNumber = Random.nextInt(10000)
       val name = "stream$userNumber"
       val apiKey = MeetingRoomApp.apiKey
-      val response = StreamVideoNetwork.tokenService.fetchToken(
-        userId = name,
+      val userId = "stream"
+      val token = StreamVideo.devToken(userId)
+      // initialize the Stream Video SDK
+      val streamVideo = StreamVideoBuilder(
+        context = MeetingRoomApp.app,
         apiKey = apiKey,
-      )
+        token = token,
+        user = User(
+          id = "stream",
+          name = name,
+          image = "http://placekitten.com/200/300",
+          role = "admin",
+          custom = mapOf("email" to userId),
+        ),
+      ).build()
 
-      response.onSuccess {
-        // initialize the Stream Video SDK
-        val streamVideo = StreamVideoBuilder(
-          context = MeetingRoomApp.app,
-          apiKey = apiKey,
-          token = data.token,
-          user = User(
-            id = data.userId,
-            name = name,
-            image = "http://placekitten.com/200/300",
-            role = "admin",
-            custom = mapOf("email" to data.userId),
-          ),
-        ).build()
-
-        // create a call
-        val call = streamVideo.call(MeetingRoomApp.callType, MeetingRoomApp.callId)
-        _uiState.value = LobbyUiState.TokenRefreshed(call)
-      }.onFailure {
-        _uiState.value = LobbyUiState.Error(messageOrNull)
-      }
+      // create a call
+      val call = streamVideo.call(MeetingRoomApp.callType, MeetingRoomApp.callId)
+      _uiState.value = LobbyUiState.TokenRefreshed(call)
     }
   }
 

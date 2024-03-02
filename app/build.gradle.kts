@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
   id(libs.plugins.androidApplication.get().pluginId)
   id(libs.plugins.kotlinAndroid.get().pluginId)
@@ -21,12 +20,13 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    isCoreLibraryDesugaringEnabled = true
   }
 
   kotlinOptions {
-    jvmTarget = "11"
+    jvmTarget = "17"
   }
 
   buildFeatures {
@@ -46,8 +46,8 @@ android {
 
 dependencies {
   // Stream Video SDK
-  implementation(libs.stream.video.compose)
-  implementation(libs.stream.video.mock)
+  implementation(libs.stream.video.ui.compose)
+  implementation(libs.stream.video.ui.previewdata)
 
   // Compose
   implementation(platform(libs.compose.bom))
@@ -73,4 +73,6 @@ dependencies {
   implementation(libs.sandwich)
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.kotlinx.serialization.converter)
+
+  coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }

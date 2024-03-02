@@ -64,8 +64,8 @@ import io.getstream.video.android.compose.ui.components.call.lobby.CallLobby
 import io.getstream.video.android.core.Call
 import io.getstream.video.android.core.call.state.ToggleCamera
 import io.getstream.video.android.core.call.state.ToggleMicrophone
-import io.getstream.video.android.mock.StreamMockUtils
-import io.getstream.video.android.mock.mockCall
+import io.getstream.video.android.mock.StreamPreviewDataUtils
+import io.getstream.video.android.mock.previewCall
 
 @Composable
 fun LobbyScreen(
@@ -144,7 +144,8 @@ private fun CallLobbyHeader(call: Call) {
   ) {
     UserAvatar(
       modifier = Modifier.size(32.dp),
-      user = call.user,
+      userName = call.user.name,
+      userImage = call.user.image,
     )
 
     Spacer(modifier = Modifier.width(14.dp))
@@ -266,11 +267,11 @@ private fun LobbyDescription(
 @Preview
 @Composable
 private fun CallLobbyScreenPreview() {
-  StreamMockUtils.initializeStreamVideo(LocalContext.current)
+  StreamPreviewDataUtils.initializeStreamVideo(LocalContext.current)
   MeetingRoomTheme {
     Box(modifier = Modifier.fillMaxSize()) {
       CallLobbyContent(
-        uiState = LobbyUiState.TokenRefreshed(mockCall),
+        uiState = LobbyUiState.TokenRefreshed(previewCall),
         navController = NavHostController(LocalContext.current),
       )
     }
