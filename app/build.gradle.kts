@@ -63,6 +63,8 @@ dependencies {
   implementation(libs.androidx.hilt.navigation)
   implementation(libs.androidx.compose.navigation)
 
+  implementation(libs.accompanist.permissions)
+
   // hilt
   implementation(libs.hilt.android)
   ksp(libs.hilt.compiler)

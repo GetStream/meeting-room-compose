@@ -16,6 +16,8 @@
 
 package io.getstream.meeting.room.compose.ui.call
 
+import android.Manifest
+import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +27,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -36,6 +39,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import io.getstream.video.android.compose.theme.VideoTheme
 import io.getstream.video.android.compose.ui.components.call.activecall.CallContent
 import io.getstream.video.android.compose.ui.components.call.controls.ControlActions
@@ -86,6 +91,8 @@ private fun CallScreenContent(
   val speakingWhileMuted by call.state.speakingWhileMuted.collectAsState()
   val isCameraEnabled by call.camera.isEnabled.collectAsState()
   val isMicrophoneEnabled by call.microphone.isEnabled.collectAsState()
+
+  EnsureVideoCallPermissions { callViewModel.join() }
 
   CallContent(
     modifier = Modifier.background(color = VideoTheme.colors.appBackground),
@@ -162,6 +169,34 @@ private fun CallScreenContent(
 
   if (speakingWhileMuted) {
     SpeakingWhileMuted()
+  }
+}
+
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun EnsureVideoCallPermissions(onPermissionsGranted: () -> Unit) {
+  // While the SDK will handle the microphone permission,
+  // its not a bad idea to do it prior to entering any call UIs
+  val permissionsState = rememberMultiplePermissionsState(
+    permissions = buildList {
+      // Access to camera & microphone
+      add(Manifest.permission.CAMERA)
+      add(Manifest.permission.RECORD_AUDIO)
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        // Allow for foreground service for notification on API 26+
+        add(Manifest.permission.FOREGROUND_SERVICE)
+      }
+    },
+  )
+
+  LaunchedEffect(key1 = Unit) {
+    permissionsState.launchMultiplePermissionRequest()
+  }
+
+  LaunchedEffect(key1 = permissionsState.allPermissionsGranted) {
+    if (permissionsState.allPermissionsGranted) {
+      onPermissionsGranted()
+    }
   }
 }
 

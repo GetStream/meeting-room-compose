@@ -35,7 +35,7 @@ class CallViewModel @Inject constructor() : ViewModel() {
   private val _uiState: MutableStateFlow<CallUiState> = MutableStateFlow(CallUiState.Loading)
   val uiState: MutableStateFlow<CallUiState> = _uiState
 
-  init {
+  fun join() {
     // step 2 - join the call
     viewModelScope.launch {
       val result = call.join(create = true)
