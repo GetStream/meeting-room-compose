@@ -2,7 +2,7 @@
 agp = "8.2.2"
 kotlin = "1.9.22"
 ksp = "1.9.23-1.0.19"
-streamVideo = "0.5.1"
+streamVideo = "0.5.4"
 androidxActivity = "1.8.2"
 androidxComposeCompiler = "1.5.10"
 androidxComposeBom = "2024.02.02"
