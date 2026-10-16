@@ -37,7 +37,7 @@ fun MeetingRoomNavHost(
   NavHost(
     modifier = modifier
       .fillMaxSize()
-      .background(VideoTheme.colors.appBackground),
+      .background(VideoTheme.colors.baseSheetPrimary),
     navController = navController,
     startDestination = startDestination,
   ) {

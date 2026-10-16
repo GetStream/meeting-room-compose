@@ -40,8 +40,8 @@ fun StreamButton(
     enabled = enabled,
     onClick = onClick,
     colors = ButtonDefaults.buttonColors(
-      backgroundColor = VideoTheme.colors.primaryAccent,
-      contentColor = VideoTheme.colors.primaryAccent,
+      backgroundColor = VideoTheme.colors.brandPrimary,
+      contentColor = VideoTheme.colors.brandPrimary,
       disabledBackgroundColor = Color(0xFF979797),
       disabledContentColor = Color(0xFF979797),
     ),
