@@ -112,7 +112,7 @@ private fun BoxScope.CallLobbyContent(
     Column(
       modifier = Modifier
         .fillMaxSize()
-        .background(VideoTheme.colors.appBackground),
+        .background(VideoTheme.colors.baseSheetPrimary),
       horizontalAlignment = Alignment.CenterHorizontally,
     ) {
       CallLobbyHeader(uiState.call)
@@ -129,7 +129,7 @@ private fun BoxScope.CallLobbyContent(
   } else if (uiState is LobbyUiState.Loading) {
     CircularProgressIndicator(
       modifier = Modifier.align(Alignment.Center),
-      color = VideoTheme.colors.primaryAccent,
+      color = VideoTheme.colors.brandPrimary,
     )
   }
 }
@@ -170,7 +170,7 @@ private fun CallLobbyBody(
   Column(
     modifier = modifier
       .fillMaxSize()
-      .background(VideoTheme.colors.appBackground),
+      .background(VideoTheme.colors.baseSheetPrimary),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally,
   ) {
@@ -187,7 +187,7 @@ private fun CallLobbyBody(
     Text(
       modifier = Modifier.padding(horizontal = 30.dp),
       text = stringResource(id = R.string.call_lobby_description),
-      color = VideoTheme.colors.callDescription,
+      color = VideoTheme.colors.basePrimary,
       textAlign = TextAlign.Center,
       fontSize = 17.sp,
     )
@@ -238,7 +238,7 @@ private fun LobbyDescription(
     modifier = Modifier
       .padding(horizontal = 35.dp)
       .background(
-        color = VideoTheme.colors.callLobbyBackground,
+        color = VideoTheme.colors.baseTertiary,
         shape = RoundedCornerShape(16.dp),
       ),
   ) {

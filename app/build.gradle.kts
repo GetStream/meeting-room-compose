@@ -9,7 +9,7 @@ plugins {
 
 android {
   namespace = "io.getstream.meeting.room.compose"
-  compileSdk = 34
+  compileSdk = 35
 
   defaultConfig {
     applicationId = "io.getstream.meeting.room.compose"

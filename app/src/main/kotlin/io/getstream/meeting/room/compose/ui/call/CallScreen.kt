@@ -22,7 +22,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
@@ -48,9 +47,11 @@ import io.getstream.video.android.compose.ui.components.call.controls.actions.Ca
 import io.getstream.video.android.compose.ui.components.call.controls.actions.FlipCameraAction
 import io.getstream.video.android.compose.ui.components.call.controls.actions.ToggleCameraAction
 import io.getstream.video.android.compose.ui.components.call.controls.actions.ToggleMicrophoneAction
+import io.getstream.video.android.compose.ui.components.call.renderer.MirrorMode
 import io.getstream.video.android.compose.ui.components.call.renderer.ParticipantVideo
 import io.getstream.video.android.compose.ui.components.call.renderer.ParticipantsLayout
 import io.getstream.video.android.compose.ui.components.call.renderer.RegularVideoRendererStyle
+import io.getstream.video.android.core.pip.PictureInPictureConfiguration
 
 @Composable
 fun CallScreen(
@@ -74,7 +75,7 @@ fun CallScreen(
             .align(Alignment.Center)
             .padding(horizontal = 24.dp),
           text = (uiState as CallUiState.Error).message,
-          color = VideoTheme.colors.errorAccent,
+          color = VideoTheme.colors.alertWarning,
           fontSize = 14.sp,
         )
       }
@@ -95,9 +96,9 @@ private fun CallScreenContent(
   EnsureVideoCallPermissions { callViewModel.join() }
 
   CallContent(
-    modifier = Modifier.background(color = VideoTheme.colors.appBackground),
+    modifier = Modifier.background(color = VideoTheme.colors.baseSheetPrimary),
     call = callViewModel.call,
-    enableInPictureInPicture = true,
+    pictureInPictureConfiguration = PictureInPictureConfiguration(enable = true),
     onBackPressed = {
       navController.navigateUp()
     },
@@ -117,6 +118,7 @@ private fun CallScreenContent(
             call = call,
             participant = participant,
             style = style,
+            mirrorMode = MirrorMode.AUTO,
           )
         },
       )
@@ -127,35 +129,23 @@ private fun CallScreenContent(
         actions = listOf(
           {
             ToggleMicrophoneAction(
-              modifier = Modifier.size(
-                VideoTheme.dimens.controlActionsButtonSize,
-              ),
               isMicrophoneEnabled = isMicrophoneEnabled,
               onCallAction = { call.microphone.setEnabled(it.isEnabled) },
             )
           },
           {
             ToggleCameraAction(
-              modifier = Modifier.size(
-                VideoTheme.dimens.controlActionsButtonSize,
-              ),
               isCameraEnabled = isCameraEnabled,
               onCallAction = { call.camera.setEnabled(it.isEnabled) },
             )
           },
           {
             FlipCameraAction(
-              modifier = Modifier.size(
-                VideoTheme.dimens.controlActionsButtonSize,
-              ),
               onCallAction = { call.camera.flip() },
             )
           },
           {
             CancelCallAction(
-              modifier = Modifier.size(
-                VideoTheme.dimens.controlActionsButtonSize,
-              ),
               onCallAction = {
                 callViewModel.leave()
                 navController.navigateUp()

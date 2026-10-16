@@ -16,7 +16,6 @@
 
 package io.getstream.meeting.room.compose.ui
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import io.getstream.video.android.compose.theme.StreamColors
@@ -27,11 +26,7 @@ fun MeetingRoomTheme(
   content: @Composable () -> Unit,
 ) {
   VideoTheme(
-    colors = if (isSystemInDarkTheme()) {
-      StreamColors.defaultDarkColors().copy(appBackground = Color(0xFF2C2C2E))
-    } else {
-      StreamColors.defaultColors().copy(appBackground = Color(0xFF2C2C2E))
-    },
+    colors = StreamColors.defaultColors().copy(baseSheetPrimary = Color(0xFF2C2C2E)),
   ) {
     content.invoke()
   }
